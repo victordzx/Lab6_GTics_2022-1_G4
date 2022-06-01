@@ -40,20 +40,5 @@ public class ProceduresController {
         return "/listasueldo";
     }
 
-    @GetMapping("/lista")
-    public String listarTodos(Model model){
-        List<Employee> listaEmpleados = employeeRepository.findAll();
-        model.addAttribute("listaEmpleados", listaEmpleados);
-        return "/lista";
-    }
 
-    @PostMapping("/calcularrenta")
-    public String calcularRenta(RedirectAttributes attr, int id){
-        Optional<Employee> optEmpleado = employeeRepository.findById(id);
-        Employee e = optEmpleado.get();
-        if(optEmpleado.isEmpty()){return "redirect:/lista";}
-        attr.addFlashAttribute("renta", employeeRepository.getRentaById(id));
-        attr.addFlashAttribute("nombres", e.getFirstName()+" "+e.getLastName());
-        return "redirect:/lista";
-    }
 }
