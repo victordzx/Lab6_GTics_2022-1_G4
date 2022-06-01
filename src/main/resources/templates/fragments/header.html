@@ -9,7 +9,7 @@
         <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/}">
             <img th:src="@{/img/icon.png}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-            GameShop4 <span style="color: black;">[Lab 6]</span>
+            HR <span style="color: black;">[Lab 6]</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-app" aria-controls="navbar-app" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -17,19 +17,13 @@
         <div class="collapse navbar-collapse justify-content-star" id="navbar-app">
             <ul class="navbar-nav">
                 <li class="nav-item" >
-                    <a class="nav-link" th:classappend="${option == 'Vista'}?'active' :''" th:href="@{/juegos/vista}">Juegos</a>
+                    <a class="nav-link" th:classappend="${option == 'lista'}?'active' :''" th:href="@{/empleados/lista}">Empleados</a>
                 </li>
                 <li class="nav-item" >
-                    <a class="nav-link" th:classappend="${option == 'Juegos'}?'active' :''" th:href="@{/juegos/lista}">Juegos</a>
+                    <a class="nav-link" th:classappend="${option == 'listasueldo'}?'active' :''" th:href="@{/listasueldo}">Empleados por sueldo</a>
                 </li>
                 <li class="nav-item" >
-                    <a class="nav-link" th:classappend="${option == 'Juegos'}?'active' :''" th:href="@{/juegos/lista}">Mis Juegos</a>
-                </li>
-                <li class="nav-item" >
-                    <a class="nav-link" th:classappend="${option == 'Plataformas'}?'active' :''" th:href="@{/plataformas/lista}" >Plataformas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:classappend="${option == 'Distribuidoras'}?'active' :''" th:href="@{/distribuidoras/lista}" >Distribuidoras</a>
+                    <a class="nav-link" th:classappend="${option == 'listaanios'}?'active' :''" th:href="@{/listaanios}">Empleados por años</a>
                 </li>
             </ul>
     </nav>

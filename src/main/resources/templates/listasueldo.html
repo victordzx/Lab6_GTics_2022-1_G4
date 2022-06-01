@@ -2,12 +2,12 @@
 <head th:replace="fragments/base.html :: head(title='Lista sueldo')"></head>
 <body>
 <div class='container container-app'>
-    <div th:replace="fragments/header.html :: header('Distribuidoras')"></div>
+    <div th:replace="fragments/header.html :: header('listasueldo')"></div>
 
     <div id="content">
         <main>
             <!-- Contenido -->
-            <div class="page-header text-center mb-3">
+            <div class="page-header text-center mb-3 pt-5">
                 <h1 th:text="'Lista de Empleados con sueldo mayor a '+ ${sueldo}"></h1>
             </div>
             <div class="py-3">

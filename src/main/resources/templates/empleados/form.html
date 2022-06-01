@@ -8,9 +8,12 @@
   <meta charset="UTF-8">
     <title>Nuevo Empleado</title>
 <main>
-    <div class="container py-5 ">
+
+
+    <div class="container ">
+        <div th:replace="fragments/header.html :: header('lista')"></div>
         <div class="page-header">
-        <h2>Nuevo Empleado</h2>
+        <h2 class="pt-5">Nuevo Empleado</h2>
         </div>
         <form method="post" th:action="@{|/empleados/guardar|}" th:object="${empleado}">
             <div class="form-outline mb-4">
@@ -40,7 +43,7 @@
             </div>
             <div class="form-outline mb-4">
                 <label class="form-label" for="job">Trabajo</label>
-                <select th:field="*{job}" id="job">
+                <select th:field="*{job}" id="job" class="form-select">
                     <option th:each="trabajo :${trabajos}" th:text="${trabajo.jobTitle}" th:value="${trabajo.id}"></option>
                 </select>
                 <div class="invalid-feedback" th:if="${#fields.hasErrors('job')}" th:errors="*{job}">Error</div>

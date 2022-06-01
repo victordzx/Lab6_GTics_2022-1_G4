@@ -28,11 +28,11 @@ public class EmployeeController {
     @Autowired
     JobRepository jobRepository;
 
-    @GetMapping("/lista")
+    @GetMapping("/empleados/lista")
     public String listarTodos(Model model){
         List<Employee> listaEmpleados = employeeRepository.findAll();
         model.addAttribute("listaEmpleados", listaEmpleados);
-        return "/lista";
+        return "empleados/lista";
     }
     @GetMapping("/lista/tiempo")
     public String listarPorTiempo(Model model){
@@ -46,18 +46,13 @@ public class EmployeeController {
         Optional<Employee> optEmpleado = employeeRepository.findById(id);
         Employee e = optEmpleado.get();
         if (optEmpleado.isEmpty()) {
-            return "redirect:/lista";
+            return "redirect:/empleados/lista";
         }
         attr.addFlashAttribute("renta", employeeRepository.getRentaById(id));
         attr.addFlashAttribute("nombres", e.getFirstName() + " " + e.getLastName());
-        return "redirect:/lista";
+        return "redirect:/empleados/lista";
     }
 
-    @GetMapping(value = {"/empleados/lista"})
-    public String listaEmpleados(Model model) {
-        model.addAttribute("employees", employeeRepository.EmpleadosSueldo());
-        return "empleados/lista";
-    }
 
     @GetMapping("/empleados/nuevo")
     public String nuevoEmpleado(@ModelAttribute("empleado")Employee empleado,Model model){
