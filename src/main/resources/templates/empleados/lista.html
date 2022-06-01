@@ -1,17 +1,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: head(title='Lista sueldo')"></head>
+<head th:replace="fragments/base.html :: head(title='Empleados')"></head>
 <body>
 <div class='container container-app'>
-    <div th:replace="fragments/header.html :: header('Distribuidoras')"></div>
+    <div th:replace="fragments/header.html :: header('lista')"></div>
 
     <div id="content">
         <main>
             <!-- Contenido -->
-            <div class="page-header text-center mb-3">
+            <div class="page-header text-center mb-3 pt-5">
                 <h1>Lista de todos los empleados</h1>
             </div>
             <div class="container-fluid">
-                <a class="btn btn-primary mt-4 mb-4" th:href="@{/nuevo}"><span class="bi bi-plus-circle"></span> Nuevo Empleado</a>
+                <a class="btn btn-primary mt-4 mb-4" th:href="@{/empleados/nuevo}"><span class="bi bi-plus-circle"></span> Nuevo Empleado</a>
                 <table class="table table-striped">
                     <thead>
                     <tr>
