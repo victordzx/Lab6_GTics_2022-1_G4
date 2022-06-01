@@ -1,10 +1,18 @@
 package com.example.lab6_gtics_20221_g4.controller;
 
+import com.example.lab6_gtics_20221_g4.entity.Employee;
 import com.example.lab6_gtics_20221_g4.repository.EmployeeRepository;
+import com.example.lab6_gtics_20221_g4.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 public class EmployeeController {
@@ -12,9 +20,32 @@ public class EmployeeController {
     @Autowired
     EmployeeRepository employeeRepository;
 
+    @Autowired
+    JobRepository jobRepository;
+
     @GetMapping(value = {"/empleados/lista"})
     public String listaEmpleados(Model model) {
         model.addAttribute("employees", employeeRepository.EmpleadosSueldo());
         return "empleados/lista";
     }
+
+    @GetMapping("/empleados/nuevo")
+    public String nuevoEmpleado(@ModelAttribute("empleado")Employee empleado,Model model){
+         model.addAttribute("trabajos",jobRepository.findAll()) ;
+        return "empleados/form";
+    }
+
+    @PostMapping("/empleados/guardar")
+    public String guardarEmpleado(@ModelAttribute("empleado") @Valid Employee empleado, BindingResult bindingResult,
+                                  RedirectAttributes redirectAttributes, Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("trabajos",jobRepository.findAll());
+            System.out.println(empleado.getSalary());
+            return "empleados/form";
+        }
+        employeeRepository.save(empleado);
+        redirectAttributes.addFlashAttribute("msg","Se creo el usuario exitosamente");
+        return "redirect:/empleados/lista";
+    }
+
 }

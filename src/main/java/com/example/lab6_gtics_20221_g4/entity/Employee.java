@@ -1,6 +1,7 @@
 package com.example.lab6_gtics_20221_g4.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 
@@ -12,28 +13,38 @@ public class Employee {
     @Column(name = "employee_id", nullable = false)
     private Integer id;
 
+    @NotBlank(message = "Tiene que llenar el nombre")
     @Column(name = "first_name", length = 20)
     private String firstName;
 
+    @NotBlank(message = "Tiene que llenar el apellido")
     @Column(name = "last_name", nullable = false, length = 25)
     private String lastName;
 
+    @NotBlank(message = "tiene que llenar el correo")
+    @Email(message = "tiene que ser un correo")
     @Column(name = "email", nullable = false, length = 25)
     private String email;
 
     @Column(name = "password", length = 65)
     private String password;
 
+    @NotBlank(message = "No puede ser en blanco")
+    @Digits(message = "Tiene que ser un numero", integer = 10, fraction = 0)
     @Column(name = "phone_number", length = 20)
     private String phoneNumber;
 
+    @NotNull(message = "tiene que seleccionar una fecha")
     @Column(name = "hire_date", nullable = false)
-    private Instant hireDate;
+    private String hireDate;
 
+    @NotNull(message = "Tiene que seleccionar un trabajo")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "job_id", nullable = false)
     private Job job;
 
+    @NotNull(message = "Tiene que llenar el salario")
+    @Positive(message = "Tiene que ser un valor positivo")
     @Column(name = "salary", precision = 8, scale = 2)
     private BigDecimal salary;
 
@@ -99,11 +110,11 @@ public class Employee {
         this.job = job;
     }
 
-    public Instant getHireDate() {
+    public String getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(Instant hireDate) {
+    public void setHireDate(String hireDate) {
         this.hireDate = hireDate;
     }
 
