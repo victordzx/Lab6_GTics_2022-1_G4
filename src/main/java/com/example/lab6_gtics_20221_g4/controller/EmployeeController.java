@@ -35,14 +35,16 @@ public class EmployeeController {
     }
 
     @PostMapping("/calcularrenta")
-    public String calcularRenta(RedirectAttributes attr, int id){
+    public String calcularRenta(RedirectAttributes attr, int id) {
         Optional<Employee> optEmpleado = employeeRepository.findById(id);
         Employee e = optEmpleado.get();
-        if(optEmpleado.isEmpty()){return "redirect:/lista";}
+        if (optEmpleado.isEmpty()) {
+            return "redirect:/lista";
+        }
         attr.addFlashAttribute("renta", employeeRepository.getRentaById(id));
-        attr.addFlashAttribute("nombres", e.getFirstName()+" "+e.getLastName());
+        attr.addFlashAttribute("nombres", e.getFirstName() + " " + e.getLastName());
         return "redirect:/lista";
-
+    }
 
     @GetMapping(value = {"/empleados/lista"})
     public String listaEmpleados(Model model) {
