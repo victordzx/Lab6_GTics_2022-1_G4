@@ -7,4 +7,6 @@ public interface EmployeeSueldo {
     String getDepartamento();
 
     String getJefe();
+
+    float getSalario();
 }
