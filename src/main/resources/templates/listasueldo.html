@@ -1,0 +1,55 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head(title='Lista sueldo')"></head>
+<body>
+<div class='container container-app'>
+    <div th:replace="fragments/header.html :: header('Distribuidoras')"></div>
+
+    <div id="content">
+        <main>
+            <!-- Contenido -->
+            <div class="page-header text-center mb-3">
+                <h1 th:text="'Lista de Empleados con sueldo mayor a '+ ${sueldo}"></h1>
+            </div>
+            <div class="py-3">
+                <form class=" w-50" method="get" th:action="@{/listasueldo}">
+                    <div class="col">
+                        <label >Filtrar por sueldo mayor a:&nbsp;</label>
+                    </div>
+                    <div class="col input-group">
+                        <input class="form-control" th:value="${sueldo}" type="text" name="sueldo">
+                        <button class="btn btn-primary" type="submit">Buscar</button>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="container-fluid">
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombres y Apellidos</th>
+                        <th>Departamento</th>
+                        <th>Jefe</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="empleado, info : ${listaEmpleados}">
+                        <td th:text="${info.index + 1}"></td>
+                        <td th:text="${empleado.nombres}"></td>
+                        <td th:text="${empleado.departamento}"></td>
+                        <td th:text="${empleado.jefe}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /Contenido -->
+        </main>
+        <div th:replace="fragments/footer.html :: footer(year='2022')"></div>
+    </div>
+</div>
+<div th:replace="fragments/base.html :: jsScripts"></div>
+</body>
+</html>
