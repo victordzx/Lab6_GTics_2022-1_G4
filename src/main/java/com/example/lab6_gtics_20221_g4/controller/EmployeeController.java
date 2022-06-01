@@ -1,5 +1,6 @@
 package com.example.lab6_gtics_20221_g4.controller;
 
+import com.example.lab6_gtics_20221_g4.dto.EmployeeTiempo;
 import com.example.lab6_gtics_20221_g4.entity.Employee;
 import com.example.lab6_gtics_20221_g4.repository.EmployeeRepository;
 import com.example.lab6_gtics_20221_g4.repository.JobRepository;
@@ -32,6 +33,12 @@ public class EmployeeController {
         List<Employee> listaEmpleados = employeeRepository.findAll();
         model.addAttribute("listaEmpleados", listaEmpleados);
         return "/lista";
+    }
+    @GetMapping("/lista/tiempo")
+    public String listarPorTiempo(Model model){
+        List<EmployeeTiempo> listaEmpleados = employeeRepository.empleadosTiempo();
+        model.addAttribute("listaEmpleados", listaEmpleados);
+        return "/empleadostiempo";
     }
 
     @PostMapping("/calcularrenta")

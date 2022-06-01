@@ -1,6 +1,7 @@
 package com.example.lab6_gtics_20221_g4.repository;
 
 import com.example.lab6_gtics_20221_g4.dto.EmployeeSueldo;
+import com.example.lab6_gtics_20221_g4.dto.EmployeeTiempo;
 import com.example.lab6_gtics_20221_g4.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,4 +21,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query(value = "select * from employees order by salary",
             nativeQuery = true)
     List<Employee> EmpleadosSueldo();
+
+    @Query(nativeQuery = true,
+    value = "call employee_job_more_4_anios()")
+    List<EmployeeTiempo> empleadosTiempo();
 }
