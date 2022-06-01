@@ -46,7 +46,7 @@ public class Employee {
     @NotNull(message = "Tiene que llenar el salario")
     @Positive(message = "Tiene que ser un valor positivo")
     @Column(name = "salary", precision = 8, scale = 2)
-    private BigDecimal salary;
+    private float salary;
 
     @Column(name = "commission_pct", precision = 2, scale = 2)
     private BigDecimal commissionPct;
@@ -94,11 +94,11 @@ public class Employee {
         this.commissionPct = commissionPct;
     }
 
-    public BigDecimal getSalary() {
+    public float getSalary() {
         return salary;
     }
 
-    public void setSalary(BigDecimal salary) {
+    public void setSalary(float salary) {
         this.salary = salary;
     }
 

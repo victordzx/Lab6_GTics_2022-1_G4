@@ -1,0 +1,81 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head(title='Lista sueldo')"></head>
+<body>
+<div class='container container-app'>
+    <div th:replace="fragments/header.html :: header('Distribuidoras')"></div>
+
+    <div id="content">
+        <main>
+            <!-- Contenido -->
+            <div class="page-header text-center mb-3">
+                <h1>Lista de todos los empleados</h1>
+            </div>
+            <div class="container-fluid">
+                <a class="btn btn-primary mt-4 mb-4" th:href="@{/nuevo}"><span class="bi bi-plus-circle"></span> Nuevo Empleado</a>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Salario</th>
+                        <th width="270"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="empleado, info : ${listaEmpleados}">
+                        <td th:text="${info.index + 1}"></td>
+                        <td th:text="${empleado.firstName}"></td>
+                        <td th:text="${empleado.lastName}"></td>
+                        <td th:text="${empleado.email}"></td>
+                        <td th:text="${empleado.phoneNumber}"></td>
+                        <td th:text="${empleado.salary}"></td>
+                        <td>
+                            <form method="post" th:action="@{/calcularrenta}">
+                                <input hidden th:value="${empleado.id}" name="id">
+                                <button type="submit" class="btn btn-primary">Calcular renta de 5ta categoría</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /Contenido -->
+        </main>
+        <div th:replace="fragments/footer.html :: footer(year='2022')"></div>
+    </div>
+</div>
+<div th:replace="fragments/base.html :: jsScripts"></div>
+
+<!-- Modal msg -->
+<div th:if="${renta!=null}" class="modal" tabindex="-1" id="msgModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class=" w-100 d-flex justify-content-center mb-3">
+                    <i class="fa-solid fa-circle-check" style="font-size: 50px"></i>
+                </div>
+                <div class="w-100 d-flex justify-content-center my-2" th:text="'La renta de 5ta categoría para '+${nombres}+' es '+${renta}">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" th:if="${renta != null}">
+    $(window).on('load', function() {
+        $('#msgModal').modal('show');
+    });
+</script>
+</body>
+</html>
