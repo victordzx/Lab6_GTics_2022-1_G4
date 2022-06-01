@@ -17,4 +17,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query(nativeQuery = true, value = "select calcular_impuesto(e.salary) from employees e where e.employee_id = ?1")
     float getRentaById(int id);
 
+    @Query(value = "select * from employees order by salary",
+            nativeQuery = true)
+    List<Employee> EmpleadosSueldo();
 }
