@@ -14,4 +14,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query(value = "CALL lista_sueldo_mayor(:sueldo);", nativeQuery = true)
     List<EmployeeSueldo> findSueldoMayor(float sueldo);
 
+    @Query(value = "select * from employees order by salary",
+            nativeQuery = true)
+    List<Employee> EmpleadosSueldo();
 }
