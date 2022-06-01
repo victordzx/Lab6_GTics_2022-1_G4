@@ -1,13 +1,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments/base.html :: head(title='Lista sueldo')"></head>
+    <head th:replace="fragments/base.html :: head(title='Lista por años')"></head>
     <body>
         <div class='container container-app'>
-            <div th:replace="fragments/header.html :: header('Distribuidoras')"></div>
+            <div th:replace="fragments/header.html :: header('listaanios')"></div>
 
             <div id="content">
                 <main>
                     <!-- Contenido -->
-                    <div class="page-header text-center mb-3">
+                    <div class="page-header text-center mb-3 pt-5">
                         <h1>Lista de Empleaddos con 4 años o más en la empresa</h1>
                     </div>
                     <div class="container-fluid">
@@ -18,7 +18,7 @@
                                     <th>Nombre</th>
                                     <th>Apellido</th>
                                     <th>Salario</th>
-                                    <th>Tiempo</th>
+                                    <th width="180">Años en la empresa</th>
                                 </tr>
                             </thead>
                             <tbody>

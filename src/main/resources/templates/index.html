@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head(title='HR')"></head>
+<body>
+<div class="container">
+  <div th:replace="fragments/header.html :: header('lista')"></div>
+  <div class="col-md-4 offset-md-4 pt-5">
+    <h2 class="pb-2 border-bottom" style="font-weight: 600">HR</h2>
+    <img class="img-fluid" th:src="@{/img/HR.png}" alt="HR">
+    <div class="vstack gap-3">
+      <a class="btn btn-primary" th:href="@{/empleados/lista}">Todos los empleados</a>
+      <a class="btn btn-primary" th:href="@{/listasueldo}">Empleados por sueldo</a>
+      <a class="btn btn-primary" th:href="@{/lista/tiempo}">Empleados por años en la empresa</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

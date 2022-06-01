@@ -28,6 +28,11 @@ public class EmployeeController {
     @Autowired
     JobRepository jobRepository;
 
+    @GetMapping({"","/"})
+    public String index(){
+        return "index";
+    }
+
     @GetMapping("/empleados/lista")
     public String listarTodos(Model model){
         List<Employee> listaEmpleados = employeeRepository.findAll();
